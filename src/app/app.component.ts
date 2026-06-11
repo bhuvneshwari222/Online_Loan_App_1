@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Online_Loan_App_1';
+  @ViewChild('loanForm') loanForm !: NgForm;
+  onSubmit(){
+    if(this.loanForm.invalid){
+      return this.loanForm.control.markAllAsTouched()
+    }
+    this.loanForm.resetForm();
+  }
 }
